@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+:root {
+  /* Palette — Architectural Void (WCAG 2.1 AA+ verified on #060606) */
+  --void-bg: #060606;
+  --void-surface: #0e0e10;
+  --void-elevated: #16161a;
+  --void-ink: #f5f4f0;
+  --void-ink-secondary: #a1a1a6;
+  --void-ink-muted: #808088;
+  --void-border: rgba(245, 244, 240, 0.12);
+  --void-border-strong: rgba(245, 244, 240, 0.26);
+  --void-accent: #ff4d2e;
+  --void-accent-soft: rgba(255, 77, 46, 0.14);
+
+  /* Fluid Typography Scale — 100% clamp() driven */
+  --text-display-xl: clamp(2.85rem, 1.2rem + 7.2vw, 8.75rem);
+  --text-display-lg: clamp(2.1rem, 1.15rem + 4.1vw, 5.25rem);
+  --text-display-md: clamp(1.65rem, 1.05rem + 2.4vw, 3.25rem);
+  --text-heading: clamp(1.25rem, 0.95rem + 1.2vw, 2.05rem);
+  --text-body-lg: clamp(1.02rem, 0.94rem + 0.42vw, 1.32rem);
+  --text-body: clamp(0.92rem, 0.88rem + 0.2vw, 1.04rem);
+  --text-mono-sm: clamp(0.75rem, 0.72rem + 0.12vw, 0.82rem);
+  --text-mono-xs: clamp(0.68rem, 0.66rem + 0.08vw, 0.75rem);
+
+  /* Fluid Layout & Spacing Scale — 100% clamp() driven */
+  --space-gutter: clamp(1.125rem, 0.4rem + 3.2vw, 3.5rem);
+  --space-grid-gap: clamp(0.75rem, 0.45rem + 1.1vw, 1.75rem);
+  --space-row-gap: clamp(1.25rem, 0.75rem + 2vw, 2.75rem);
+  --space-section-y: clamp(4.5rem, 2.5rem + 7.5vw, 10rem);
+  --space-section-y-tight: clamp(2.75rem, 1.5rem + 4.2vw, 6rem);
+  --space-card-pad: clamp(1.125rem, 0.75rem + 1.4vw, 2.25rem);
+  --space-stack-lg: clamp(2rem, 1rem + 3.5vw, 4.5rem);
+  --space-stack-md: clamp(1.25rem, 0.75rem + 1.8vw, 2.5rem);
+  --space-stack-sm: clamp(0.625rem, 0.45rem + 0.7vw, 1.125rem);
+  --header-height: clamp(4rem, 3.5rem + 1.6vw, 5.25rem);
+  --void-max-width: 92rem;
+}
+
+@theme inline {
+  --color-void-bg: var(--void-bg);
+  --color-void-surface: var(--void-surface);
+  --color-void-elevated: var(--void-elevated);
+  --color-void-ink: var(--void-ink);
+  --color-void-ink-secondary: var(--void-ink-secondary);
+  --color-void-ink-muted: var(--void-ink-muted);
+  --color-void-border: var(--void-border);
+  --color-void-border-strong: var(--void-border-strong);
+  --color-void-accent: var(--void-accent);
+  --color-void-accent-soft: var(--void-accent-soft);
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--void-bg);
+    color: var(--void-ink);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--void-bg);
+    color: var(--void-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.55;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--void-accent);
+    color: var(--void-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--void-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* ==========================================================================
+   VOID Architectural Layout System
+   - Flexbox controls outer section alignment & rhythm (.void-section)
+   - 12-Column CSS Grid controls internal composition (.void-grid-12)
+   - All dimensions, gutters & type scale fluidly via clamp()
+   ========================================================================== */
+
+.void-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  isolation: isolate;
+  overflow-x: clip;
+  padding-block: var(--space-section-y);
+}
+
+.void-section--tight {
+  padding-block: var(--space-section-y-tight);
+}
+
+.void-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-grid-gap);
+  row-gap: var(--space-row-gap);
+  width: 100%;
+  max-width: var(--void-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-gutter);
+}
+
+/* Fluid clamp() typography primitives */
+.type-display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  line-height: 0.91;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.type-display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  line-height: 0.96;
+  letter-spacing: -0.032em;
+  font-weight: 700;
+}
+
+.type-display-md {
+  font-family: var(--font-display);
+  font-size: var(--text-display-md);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+.type-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-heading);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.type-body-lg {
+  font-size: var(--text-body-lg);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.type-body {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.type-mono-sm {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-sm);
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.type-mono-xs {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Depth plane atmospheric texture & subtle surface elevation */
+.void-depth-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  border: 1px solid var(--void-border);
+  box-shadow:
+    0 24px 64px -28px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(245, 244, 240, 0.07);
+  backdrop-filter: blur(10px);
+}
+
+.void-grid-blueprint {
+  background-image: linear-gradient(
+    to right,
+    rgba(245, 244, 240, 0.045) 1px,
+    transparent 1px
+  );
+  background-size: calc(100% / 12) 100%;
+}
+
+/* Skip link for keyboard accessibility */
+.void-skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  background-color: var(--void-ink);
+  color: var(--void-bg);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.void-skip-link:focus {
+  transform: translateY(0);
+}
