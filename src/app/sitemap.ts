@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SELECTED_PROJECTS } from '@/data/studio';
 
-const BASE_URL = 'https://void.studio';
+const BASE_URL = 'https://voidstudio.falconit.xyz';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

@@ -30,26 +30,53 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const SITE_URL = 'https://voidstudio.falconit.xyz';
+const SITE_DESCRIPTION =
+  'VOID is an independent digital creative studio specializing in architectural minimalism, 12-column Swiss editorial grids, fluid clamp() typography, and precision GSAP kinetic web flagships engineered with Next.js, TypeScript, and Tailwind CSS.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://void.studio'),
+  metadataBase: new URL(SITE_URL),
+  applicationName: `${STUDIO_META.name} Studio`,
   title: {
     default: `${STUDIO_META.name} — ${STUDIO_META.tagline}`,
     template: `%s — ${STUDIO_META.name}`,
   },
-  description:
-    'VOID is an independent digital creative studio crafting minimalist brand flagships, 12-column editorial architectures, and kinetic web experiences.',
+  description: SITE_DESCRIPTION,
+  keywords: [
+    'VOID Studio',
+    'Digital Creative Studio',
+    'Creative Frontend Engineering',
+    'Swiss Grid Web Design',
+    'Editorial Web Architecture',
+    'Next.js App Router',
+    'GSAP Motion Design',
+    'Tailwind CSS',
+    'Design Systems',
+    'Interactive Flagship',
+  ],
+  authors: [{ name: 'VOID Studio', url: SITE_URL }],
+  creator: 'VOID Studio',
+  publisher: 'VOID Studio',
+  category: 'design',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
+    url: SITE_URL,
     title: `${STUDIO_META.name} — ${STUDIO_META.tagline}`,
-    description:
-      'Brutalist digital flagships, 12-column Swiss architectures, and GSAP kinetic experiences.',
-    siteName: STUDIO_META.name,
+    description: SITE_DESCRIPTION,
+    siteName: `${STUDIO_META.name} Studio`,
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: `${STUDIO_META.name} — ${STUDIO_META.tagline}`,
-    description:
-      'Brutalist digital flagships, 12-column Swiss architectures, and GSAP kinetic experiences.',
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

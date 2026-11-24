@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://void.studio/sitemap.xml',
+    sitemap: 'https://voidstudio.falconit.xyz/sitemap.xml',
   };
 }
